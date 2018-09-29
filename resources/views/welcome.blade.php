@@ -8,6 +8,10 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
         <!-- Styles -->
         <style>
@@ -26,7 +30,7 @@
 
             .flex-center {
                 align-items: center;
-                display: flex;
+                /*display: flex;*/
                 justify-content: center;
             }
 
@@ -80,7 +84,26 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
+                <div id="myfirstchart"></div>
+                <script type="text/javascript">
+                    new Morris.Line({
+                        // ID of the element in which to draw the chart.
+                        element: 'myfirstchart',
+                        // Chart data records -- each entry in this array corresponds to a point on
+                        // the chart.
+                        data: [
+                            { : '2008', value: 20 },
+                            { : '2009', value: 10 }
+                        ],
+                        // The name of the data record attribute that contains x-values.
+                        xkey: 'year',
+                        // A list of names of data record attributes that contain y-values.
+                        ykeys: ['value'],
+                        // Labels for the ykeys -- will be displayed when you hover over the
+                        // chart.
+                        labels: ['Value']
+                    });
+                </script>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>

@@ -7,6 +7,13 @@
                 <div class="header">
                     <h2>
                         SEGUINDO
+                        <small>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input class="form-control" placeholder="Pesquisar jogador">
+                                </div>
+                            </div>
+                        </small>
                     </h2>
                     <ul class="header-dropdown m-r--5">
                         <li class="dropdown">
@@ -39,7 +46,7 @@
                             <tbody>
                                 @foreach ($seg as $s)
                                 <tr>
-                                    <td>{{ $s->name }}</td>
+                                    <td>{{ $s->name.' '.$s->lname }}</td>
                                     <td>{{ '@'.$s->user_name }}</td>
                                 </tr>
                                 @endforeach

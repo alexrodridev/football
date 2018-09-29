@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,6 +14,14 @@ class UsersTableSeeder extends Seeder
     {
         App\User::truncate();
 
-        factory(App\User::class, 20)->create();
+        DB::table('users')->insert([
+            'name' => 'Alex',
+            'lname' => 'Rodrigues',
+            'user_name' => 'alexcleiton16',
+            'email' => 'alexcleiton16@gmail.com',
+            'password' => bcrypt('81238174'),
+        ]);
+
+        factory(App\User::class, 19)->create();
     }
 }

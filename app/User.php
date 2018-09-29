@@ -28,8 +28,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function seguindo()
+    {
+        return $this->hasMany('App\Seguidores','followed_id');
+    }
+
     public function seguidores()
     {
         return $this->hasMany('App\Seguidores');
+    }
+
+    public function autorPost()
+    {
+        return $this->hasMany('App\Post','author_post');
     }
 }

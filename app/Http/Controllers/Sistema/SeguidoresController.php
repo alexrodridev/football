@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Sistema;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Seguidores;
 use App\User;
 use Auth;
 
@@ -25,21 +24,7 @@ class SeguidoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexSeguindo()
-    {
-        $seg = User::whereHas('seguidores', function ($query){
-            $query->where([['id', '!=', Auth::id()],['user_id', '=', Auth::id()]]);
-        })->get();
-        dd($seg);
-        return view('sistema.seguindo')->with(compact('seg'));
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexSeguidores()
+    public function index()
     {
         $seg = User::whereHas('seguidores', function ($query){
             $query->where([['id', '!=', Auth::id()],['followed_id', '=', Auth::id()]]);

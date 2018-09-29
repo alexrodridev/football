@@ -13,7 +13,7 @@
 	<title>{{ config('app.name', 'Laravel') }}</title>
 
 	<!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
 	<!-- Styles -->
@@ -21,6 +21,7 @@
 	<link href="{{ asset('plugins/node-waves/waves.css') }}" rel="stylesheet" />
 	<link href="{{ asset('plugins/animate-css/animate.css') }}" rel="stylesheet" />
 	<link href="{{ asset('plugins/morrisjs/morris.css') }}" rel="stylesheet" />
+	@yield('css')
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/themes/all-themes.css') }}" rel="stylesheet" />
 </head>
@@ -141,7 +142,7 @@
 			<!-- User Info -->
 			<div class="user-info">
 				<div class="image">
-					<img src="images/user.png" width="48" height="48" alt="User" />
+					<img src="{{ asset('images/user.png') }}" width="48" height="48" alt="User" />
 				</div>
 				<div class="info-container">
 					<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name.' '.Auth::user()->lname }}</div>
@@ -174,11 +175,19 @@
 							<span>Principal</span>
 						</a>
 					</li>
-					<li class="@if(Request::url() == route('posts.index')) active @endif">
-						<a href="{{ route('posts.index') }}">
-							<i class="material-icons">notes</i>
-							<span>Meus Posts</span>
-						</a>
+					<li class="@if(Request::url() == route('posts.index') or Request::url() == route('posts.create')) active @endif">
+					  <a href="#" class="menu-toggle toggled waves-effect waves-block">
+						  <i class="material-icons">notes</i>
+						  <span>Meus Posts</span>
+					  </a>
+					  <ul class="ml-menu" style="display: block;">
+						  <li class="@if(Request::url() == route('posts.create')) active @endif">
+							  <a href="{{ route('posts.create') }}" class="@if(Request::url() == route('posts.create')) toggled @endif waves-effect waves-block">Novo post</a>
+						  </li>
+							<li class="@if(Request::url() == route('posts.index')) active @endif">
+							  <a href="{{ route('posts.index') }}" class="@if(Request::url() == route('posts.index')) toggled @endif waves-effect waves-block">Todos os meus post</a>
+						  </li>
+					  </ul>
 					</li>
 					<li class="@if(Request::url() == route('follow')) active @endif">
 						<a href="{{ route('follow') }}">
@@ -251,15 +260,15 @@
 	<script src="{{ asset('plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
 
 	<!-- Jquery DataTable Plugin Js -->
-    <script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
+	<script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
 
 	<!-- Custom Js -->
 	<script src="{{ asset('js/admin.js') }}"></script>

@@ -23,8 +23,8 @@ Route::group(['namespace' => 'Sistema'], function (){
 	
 	Route::resource('/posts', 'PostController');
 
-	Route::get('/followers', 'SeguidoresController@indexSeguidores')->name('followers');
+	Route::get('/followers', 'SeguidoresController@index')->name('followers');
 	
-	Route::get('/follow', 'SeguidoresController@indexSeguindo')->name('follow');
+	Route::get('/follow', 'SeguindoController@index')->name('follow');
 
 });

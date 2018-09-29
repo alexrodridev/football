@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Sistema;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Auth;
 
 class SeguindoController extends Controller
 {
@@ -14,7 +16,13 @@ class SeguindoController extends Controller
      */
     public function index()
     {
-        return view('sistema.seguindo');
+        $seg = User::whereHas('seguindo', function ($query){
+            $query->where([
+                ['id', '!=', Auth::id()],
+                ['user_id', '=', Auth::id()]
+            ]);
+        })->get();
+        return view('sistema.seguindo')->with(compact('seg'));
     }
 
     /**
