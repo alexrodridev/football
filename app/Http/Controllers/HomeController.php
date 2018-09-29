@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
@@ -27,13 +28,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $seg = Seguidores::where('user_id',Auth::id())->get();
-
-        $user = User::find(1)->autorPost;
-        foreach ($user as $r) {
-            echo $r->id.'<br>';
-        }
-        //return view('sistema.home')
-          //                  ->with(compact('posts'));
+        $posts = DB::table('post')
+            ->join('users', 'users.id', '=', 'post.author_post')
+            ->join('seguidores', 'seguidores.followed_id', '=', 'post.author_post')
+            ->select('post.*', 'users.id', 'users.name', 'users.lname')
+            ->where('seguidores.user_id',Auth::id())
+            ->orderBy('post.created_at', 'desc')
+            ->get();
+        dd($posts);
+        return view('sistema.home')
+                            ->with(compact('posts'));
     }
 }

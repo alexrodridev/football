@@ -37,9 +37,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Seguidores');
     }
-
-    public function autorPost()
-    {
-        return $this->hasMany('App\Post','author_post');
-    }
 }
