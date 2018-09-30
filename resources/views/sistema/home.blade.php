@@ -6,11 +6,42 @@
 				<article class="card">
 					<div class="header">
 						<h2>
-							Usuario
+							{{ $p->name.' '.$p->lname }}
 							<small>
-								{{ date("d-m-Y H:i:s", strtotime($p->created_at)) }}
+								<?php 
+									$diaH = date('d');
+									$mesH = date('m');
+									$anoH = date('Y');
+									$horaH = date('H');
+									$minH = date('i');
+									$segH = date('s');
+									$data = $p->created_at;
+									$dia = date("d", strtotime($data));
+									$mes = date("m", strtotime($data));
+									$ano = date("Y", strtotime($data));
+									$hora = date("H", strtotime($data));
+									$min = date("i", strtotime($data));
+									$seg = date("s", strtotime($data));
+
+									if ($anoH > $ano) {
+										$anos = $anoH - $ano . ' anos atras';
+									} elseif ($mesH > $mes) {
+										$meses = $mesH - $mes . ' meses atras';
+									} elseif ($diaH > $dia) {
+										$dias = $diaH - $dia . ' dias atras';
+									} elseif ($horaH > $hora) {
+										$horas = $horaH - $hora . ' horas atras';
+									} elseif ($minH > $min) {
+										$mins = $minH - $min . ' minutos atras';
+									} elseif ($segH > $seg) {
+										$segs = $segH - $seg . ' segundos atras';
+									} else {
+										echo 'postado agora';
+									}
+								?>
+								{{ @$anos }}{{ @$meses }}{{ @$dias }}{{ @$horas }}{{ @$mins }}{{ @$segs }} | {{ date("d/m/Y", strtotime($p->created_at)) }}
 								@if($p->updated_at != $p->created_at)
-									foi editado em {{ date("d-m-Y H:i:s", strtotime($p->updated_at)) }}
+									*Editado
 								@endif
 							</small>
 						</h2>
@@ -20,15 +51,26 @@
 									<i class="material-icons">more_vert</i>
 								</a>
 								<ul class="dropdown-menu pull-right">
-									<li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
-									<li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
-									<li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+									<li><a href="javascript:void(0);" class=" waves-effect waves-block">Denunciar</a></li>
 								</ul>
 							</li>
 						</ul>
 					</div>
 					<div class="body">
-						<p>{{ $p->text_post }}</p>
+						{{ $p->text_post }}
+						@if($p->image_post != null)
+							<div>
+								<img width="100%" src="{{ asset('storage/posts/'.$p->author_post.'/'.$p->image_post) }}" alt="{{ $p->image_post }}">
+							</div>
+						@endif
+						@if($p->video_post != null)
+							<iframe width="100%" height="343" src="https://www.youtube.com/embed/{{ $p->video_post }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						@endif
+						<br>
+						<button type="button" class="btn btn-primary waves-effect">
+                            <i class="material-icons">thumb_up</i>
+                            <span>LIKE</span>
+                        </button>
 					</div>
 				</article>
 			@endforeach

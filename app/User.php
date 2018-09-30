@@ -35,6 +35,6 @@ class User extends Authenticatable
 
     public function seguidores()
     {
-        return $this->hasMany('App\Seguidores');
+        return $this->hasMany('App\Seguidores','user_id');
     }
 }

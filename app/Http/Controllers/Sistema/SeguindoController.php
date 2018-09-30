@@ -17,10 +17,7 @@ class SeguindoController extends Controller
     public function index()
     {
         $seg = User::whereHas('seguindo', function ($query){
-            $query->where([
-                ['id', '!=', Auth::id()],
-                ['user_id', '=', Auth::id()]
-            ]);
+            $query->where([['user_id', '=', Auth::id()]]);
         })->get();
         return view('sistema.seguindo')->with(compact('seg'));
     }

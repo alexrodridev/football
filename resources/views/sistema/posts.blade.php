@@ -27,11 +27,11 @@
 								</a>
 								<ul class="dropdown-menu pull-right">
 									<li>
-										<a href="{{ route('posts.edit',$p->id) }}" class=" waves-effect waves-block">Editar</a>
+										<a href="{{ route('posts.edit',$p->id_post) }}" class=" waves-effect waves-block">Editar</a>
 									</li>
 									<li>
-										<a href="{{ route('posts.destroy',$p->id) }}" class=" waves-effect waves-block" onclick="event.preventDefault(); document.getElementById('form-delete{{ $p->id }}').submit();">Excluir</a>
-										<form id="form-delete{{ $p->id }}" action="{{ route('posts.destroy',$p->id) }}" method="post" style="display: none;">
+										<a href="{{ route('posts.destroy',$p->id_post) }}" class=" waves-effect waves-block" onclick="event.preventDefault(); document.getElementById('form-delete{{ $p->id }}').submit();">Excluir</a>
+										<form id="form-delete{{ $p->id_post }}" action="{{ route('posts.destroy',$p->id_post) }}" method="post" style="display: none;">
 											@method('delete')
 											@csrf
 										</form>

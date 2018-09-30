@@ -13,6 +13,6 @@ class SeguidoresTableSeeder extends Seeder
     {
         App\Seguidores::truncate();
 
-        factory(App\Seguidores::class, 200)->create();
+        factory(App\Seguidores::class, 9)->create();
     }
 }
