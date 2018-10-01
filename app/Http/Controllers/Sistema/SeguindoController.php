@@ -19,7 +19,7 @@ class SeguindoController extends Controller
         $seg = User::whereHas('seguindo', function ($query){
             $query->where([['user_id', '=', Auth::id()]]);
         })->get();
-        return view('sistema.seguindo')->with(compact('seg'));
+        return view('sistema.user.seguindo')->with(compact('seg'));
     }
 
     /**

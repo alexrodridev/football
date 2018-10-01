@@ -7,13 +7,7 @@
                 <div class="header">
                     <h2>
                         SEGUINDO
-                        <small>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input class="form-control" placeholder="Pesquisar jogador">
-                                </div>
-                            </div>
-                        </small>
+                        <small></small>
                     </h2>
                     <ul class="header-dropdown m-r--5">
                         <li class="dropdown">

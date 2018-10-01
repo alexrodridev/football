@@ -27,9 +27,9 @@ class SeguidoresController extends Controller
     public function index()
     {
         $seg = User::whereHas('seguidores', function ($query){
-            $query->where([['id', '!=', Auth::id()],['followed_id', '=', Auth::id()]]);
+            $query->where([['followed_id', '=', Auth::id()]]);
         })->get();
-        return view('sistema.seguidores')->with(compact('seg'));
+        return view('sistema.user.seguidores')->with(compact('seg'));
     }
 
     /**

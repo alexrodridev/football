@@ -29,7 +29,7 @@ class PostController extends Controller
 		$post = Post::where('author_post', Auth::id())
 												->orderBy('created_at', 'desc')
 													->get();
-		return view('sistema.posts')->with(compact('post'));
+		return view('sistema.posts.posts')->with(compact('post'));
 	}
 
 	/**
@@ -39,7 +39,7 @@ class PostController extends Controller
 	 */
 	public function create()
 	{
-		return view('sistema.create_post');
+		return view('sistema.posts.create_post');
 	}
 
 	/**
@@ -72,16 +72,16 @@ class PostController extends Controller
 
 				if (!$upload)
 					return redirect()
-											->back()
-													->with('msg_danger','Falha ao fazer o upload da imagem!');
+								->back()
+									->with('msg_danger','Falha ao fazer o upload da imagem!');
 
 			}
 		}
 		//dd($post);
 		$post->save();
 		return redirect()
-							->route('posts.create')
-									->with('msg_success','Você criou seu post, crie uma nova postagem!');
+					->route('posts.create')
+						->with('msg_success','Você criou seu post, crie uma nova postagem!');
 	}
 
 	/**
@@ -104,7 +104,7 @@ class PostController extends Controller
 	public function edit($id)
 	{
 		$post = Post::where('id_post',$id)->get();
-		return view('sistema.edit_post')->with(compact('post'));
+		return view('sistema.posts.edit_post')->with(compact('post'));
 	}
 
 	/**

@@ -8,38 +8,7 @@
 						<h2>
 							{{ $p->name.' '.$p->lname }}
 							<small>
-								<?php 
-									$diaH = date('d');
-									$mesH = date('m');
-									$anoH = date('Y');
-									$horaH = date('H');
-									$minH = date('i');
-									$segH = date('s');
-									$data = $p->created_at;
-									$dia = date("d", strtotime($data));
-									$mes = date("m", strtotime($data));
-									$ano = date("Y", strtotime($data));
-									$hora = date("H", strtotime($data));
-									$min = date("i", strtotime($data));
-									$seg = date("s", strtotime($data));
-
-									if ($anoH > $ano) {
-										$anos = $anoH - $ano . ' anos atras';
-									} elseif ($mesH > $mes) {
-										$meses = $mesH - $mes . ' meses atras';
-									} elseif ($diaH > $dia) {
-										$dias = $diaH - $dia . ' dias atras';
-									} elseif ($horaH > $hora) {
-										$horas = $horaH - $hora . ' horas atras';
-									} elseif ($minH > $min) {
-										$mins = $minH - $min . ' minutos atras';
-									} elseif ($segH > $seg) {
-										$segs = $segH - $seg . ' segundos atras';
-									} else {
-										echo 'postado agora';
-									}
-								?>
-								{{ @$anos }}{{ @$meses }}{{ @$dias }}{{ @$horas }}{{ @$mins }}{{ @$segs }} | {{ date("d/m/Y", strtotime($p->created_at)) }}
+								{{ date("H:i:s | d/m/Y", strtotime($p->created_at)) }}
 								@if($p->updated_at != $p->created_at)
 									*Editado
 								@endif
@@ -68,9 +37,9 @@
 						@endif
 						<br>
 						<button type="button" class="btn btn-primary waves-effect">
-                            <i class="material-icons">thumb_up</i>
-                            <span>LIKE</span>
-                        </button>
+														<i class="material-icons">thumb_up</i>
+														<span>LIKE</span>
+												</button>
 					</div>
 				</article>
 			@endforeach

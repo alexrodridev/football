@@ -34,4 +34,5 @@ class HomeController extends Controller
 		return view('sistema.home')
 							->with(compact('posts'));
 	}
+		
 }
